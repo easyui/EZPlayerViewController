@@ -159,58 +159,6 @@
 }
 
 
-//
-//
-//
-//-(void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
-//
-//    self.isInterceptedMenu = NO;;
-//
-//    if ( presses.anyObject.type == UIPressTypeMenu) {
-//        if (self.customContentView && !self.customContentView.hidden ) {
-//            [self __switchCustomContentViewsShow];
-//            self.isInterceptedMenu = YES;
-//            return;
-//        }
-//    
-//    }
-//    
-//    NSLog(@"____pressesBegan");
-//    [super pressesBegan:presses withEvent:event];
-//}
-//
-//-(void)pressesChanged:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
-//
-//    if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
-//        return;
-//    }
-//    NSLog(@"____pressesChanged");
-//
-//    [super pressesChanged:presses withEvent:event];
-//}
-//
-//-(void)pressesEnded:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
-//
-//    if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
-//        return;
-//    }
-//    NSLog(@"____pressesEnded");
-//
-//    [super pressesEnded:presses withEvent:event];
-//}
-//
-//
-//-(void)pressesCancelled:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
-//    if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
-//
-//        return;
-//    }
-//    NSLog(@"____pressesCancelled");
-//
-//    [super pressesCancelled:presses withEvent:event];
-//}
-
-
 
 
 #pragma mark - Public methods

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomPlayerViewController">
+            <connections>
+                <outlet property="customView" destination="iIE-7N-9YU" id="kfe-vF-wd9"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Eym-vH-oyN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIE-7N-9YU">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G56-ZI-bxS">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="211" id="Vmu-yr-Fpg"/>
+                                <constraint firstAttribute="height" constant="86" id="pNa-58-R0D"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                            <state key="normal" title="Button1"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTD-qe-wuj">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="86" id="4cI-uy-YtK"/>
+                                <constraint firstAttribute="width" constant="217" id="U3d-Yy-3zN"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                            <state key="normal" title="Button2"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCQ-GS-4cW">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="218" id="2dp-Hk-mqb"/>
+                                <constraint firstAttribute="height" constant="86" id="QUU-zM-pnx"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                            <state key="normal" title="Button3"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piO-Fo-1qe">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="86" id="Jh1-Xw-Fri"/>
+                                <constraint firstAttribute="width" constant="195" id="U47-SF-dF0"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycV-Mb-cY5">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="86" id="35z-K4-4FN"/>
+                                <constraint firstAttribute="width" constant="195" id="mab-rN-WL8"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwW-2n-fxu">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="86" id="YdG-J6-qJW"/>
+                                <constraint firstAttribute="width" constant="195" id="gJx-zf-0Cl"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.3312443242" green="1" blue="0.36772433259999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="G56-ZI-bxS" firstAttribute="leading" secondItem="iIE-7N-9YU" secondAttribute="leading" constant="209" id="32f-XO-XGE"/>
+                        <constraint firstItem="G56-ZI-bxS" firstAttribute="top" secondItem="iIE-7N-9YU" secondAttribute="top" constant="86" id="3oQ-fG-5JM"/>
+                        <constraint firstItem="wwW-2n-fxu" firstAttribute="leading" secondItem="ycV-Mb-cY5" secondAttribute="trailing" constant="498" id="4x1-Ec-Hoc"/>
+                        <constraint firstItem="NTD-qe-wuj" firstAttribute="leading" secondItem="G56-ZI-bxS" secondAttribute="trailing" constant="220" id="AS8-zg-zjt"/>
+                        <constraint firstAttribute="height" constant="450" id="IJt-Xz-Ajv"/>
+                        <constraint firstItem="ycV-Mb-cY5" firstAttribute="top" secondItem="NTD-qe-wuj" secondAttribute="bottom" constant="106" id="LJF-2e-fbU"/>
+                        <constraint firstItem="wwW-2n-fxu" firstAttribute="top" secondItem="SCQ-GS-4cW" secondAttribute="bottom" constant="122" id="LhW-Dr-JJL"/>
+                        <constraint firstItem="SCQ-GS-4cW" firstAttribute="top" secondItem="iIE-7N-9YU" secondAttribute="top" constant="86" id="WuG-3a-oPl"/>
+                        <constraint firstItem="NTD-qe-wuj" firstAttribute="top" secondItem="iIE-7N-9YU" secondAttribute="top" constant="86" id="XcJ-c1-6Ib"/>
+                        <constraint firstItem="piO-Fo-1qe" firstAttribute="top" secondItem="G56-ZI-bxS" secondAttribute="bottom" constant="106" id="aHH-TK-yrn"/>
+                        <constraint firstItem="ycV-Mb-cY5" firstAttribute="leading" secondItem="piO-Fo-1qe" secondAttribute="trailing" constant="247" id="iMY-Lc-b3p"/>
+                        <constraint firstItem="SCQ-GS-4cW" firstAttribute="leading" secondItem="NTD-qe-wuj" secondAttribute="trailing" constant="273" id="t6Z-Lj-cJN"/>
+                        <constraint firstItem="piO-Fo-1qe" firstAttribute="leading" secondItem="iIE-7N-9YU" secondAttribute="leading" constant="209" id="y5z-as-I6g"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="iIE-7N-9YU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GQW-0L-28e"/>
+                <constraint firstItem="iIE-7N-9YU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Lqz-gP-8fX"/>
+                <constraint firstAttribute="trailing" secondItem="iIE-7N-9YU" secondAttribute="trailing" id="ohM-nu-B6x"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

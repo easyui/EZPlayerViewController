@@ -1,0 +1,338 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		990380F91DB6230A000284FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 990380F81DB6230A000284FA /* main.m */; };
+		990380FC1DB6230A000284FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 990380FB1DB6230A000284FA /* AppDelegate.m */; };
+		990380FF1DB6230A000284FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990380FE1DB6230A000284FA /* ViewController.m */; };
+		990381021DB6230A000284FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990381001DB6230A000284FA /* Main.storyboard */; };
+		990381041DB6230A000284FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 990381031DB6230A000284FA /* Assets.xcassets */; };
+		9903810E1DB623A6000284FA /* EZPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9903810D1DB623A6000284FA /* EZPlayerViewController.m */; };
+		997006E81DB7125400DEF51B /* CustomPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 997006E61DB7125400DEF51B /* CustomPlayerViewController.m */; };
+		997006E91DB7125400DEF51B /* CustomPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997006E71DB7125400DEF51B /* CustomPlayerViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		990380F41DB6230A000284FA /* EZPlayerViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZPlayerViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		990380F81DB6230A000284FA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		990380FA1DB6230A000284FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		990380FB1DB6230A000284FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		990380FD1DB6230A000284FA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		990380FE1DB6230A000284FA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		990381011DB6230A000284FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		990381031DB6230A000284FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		990381051DB6230A000284FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9903810C1DB623A6000284FA /* EZPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZPlayerViewController.h; sourceTree = "<group>"; };
+		9903810D1DB623A6000284FA /* EZPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZPlayerViewController.m; sourceTree = "<group>"; };
+		997006E51DB7125400DEF51B /* CustomPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPlayerViewController.h; sourceTree = "<group>"; };
+		997006E61DB7125400DEF51B /* CustomPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPlayerViewController.m; sourceTree = "<group>"; };
+		997006E71DB7125400DEF51B /* CustomPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPlayerViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		990380F11DB6230A000284FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		990380EB1DB6230A000284FA = {
+			isa = PBXGroup;
+			children = (
+				990380F61DB6230A000284FA /* EZPlayerViewController */,
+				990380F51DB6230A000284FA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		990380F51DB6230A000284FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				990380F41DB6230A000284FA /* EZPlayerViewController.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		990380F61DB6230A000284FA /* EZPlayerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9903810B1DB6237F000284FA /* source */,
+				990380FA1DB6230A000284FA /* AppDelegate.h */,
+				990380FB1DB6230A000284FA /* AppDelegate.m */,
+				990380FD1DB6230A000284FA /* ViewController.h */,
+				990380FE1DB6230A000284FA /* ViewController.m */,
+				997006E51DB7125400DEF51B /* CustomPlayerViewController.h */,
+				997006E61DB7125400DEF51B /* CustomPlayerViewController.m */,
+				997006E71DB7125400DEF51B /* CustomPlayerViewController.xib */,
+				990381001DB6230A000284FA /* Main.storyboard */,
+				990381031DB6230A000284FA /* Assets.xcassets */,
+				990381051DB6230A000284FA /* Info.plist */,
+				990380F71DB6230A000284FA /* Supporting Files */,
+			);
+			path = EZPlayerViewController;
+			sourceTree = "<group>";
+		};
+		990380F71DB6230A000284FA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				990380F81DB6230A000284FA /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9903810B1DB6237F000284FA /* source */ = {
+			isa = PBXGroup;
+			children = (
+				9903810C1DB623A6000284FA /* EZPlayerViewController.h */,
+				9903810D1DB623A6000284FA /* EZPlayerViewController.m */,
+			);
+			name = source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		990380F31DB6230A000284FA /* EZPlayerViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 990381081DB6230A000284FA /* Build configuration list for PBXNativeTarget "EZPlayerViewController" */;
+			buildPhases = (
+				990380F01DB6230A000284FA /* Sources */,
+				990380F11DB6230A000284FA /* Frameworks */,
+				990380F21DB6230A000284FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EZPlayerViewController;
+			productName = EZPlayerViewController;
+			productReference = 990380F41DB6230A000284FA /* EZPlayerViewController.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		990380EC1DB6230A000284FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "yangjun zhu";
+				TargetAttributes = {
+					990380F31DB6230A000284FA = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = HXFWC5M984;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 990380EF1DB6230A000284FA /* Build configuration list for PBXProject "EZPlayerViewController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 990380EB1DB6230A000284FA;
+			productRefGroup = 990380F51DB6230A000284FA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				990380F31DB6230A000284FA /* EZPlayerViewController */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		990380F21DB6230A000284FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				990381041DB6230A000284FA /* Assets.xcassets in Resources */,
+				997006E91DB7125400DEF51B /* CustomPlayerViewController.xib in Resources */,
+				990381021DB6230A000284FA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		990380F01DB6230A000284FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				990380FF1DB6230A000284FA /* ViewController.m in Sources */,
+				990380FC1DB6230A000284FA /* AppDelegate.m in Sources */,
+				9903810E1DB623A6000284FA /* EZPlayerViewController.m in Sources */,
+				997006E81DB7125400DEF51B /* CustomPlayerViewController.m in Sources */,
+				990380F91DB6230A000284FA /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		990381001DB6230A000284FA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				990381011DB6230A000284FA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		990381061DB6230A000284FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		990381071DB6230A000284FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		990381091DB6230A000284FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhaohua Cai (H4AK63G5SM)";
+				DEVELOPMENT_TEAM = HXFWC5M984;
+				INFOPLIST_FILE = EZPlayerViewController/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ouka.EZPlayerViewController;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9b8ecd08-632e-4d33-a206-0ca0cc1056b7";
+				PROVISIONING_PROFILE_SPECIFIER = FreeForAll_dev_tv;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		9903810A1DB6230A000284FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhaohua Cai (H4AK63G5SM)";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = EZPlayerViewController/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ouka.EZPlayerViewController;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		990380EF1DB6230A000284FA /* Build configuration list for PBXProject "EZPlayerViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				990381061DB6230A000284FA /* Debug */,
+				990381071DB6230A000284FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		990381081DB6230A000284FA /* Build configuration list for PBXNativeTarget "EZPlayerViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				990381091DB6230A000284FA /* Debug */,
+				9903810A1DB6230A000284FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 990380EC1DB6230A000284FA /* Project object */;
+}

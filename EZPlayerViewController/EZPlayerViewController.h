@@ -11,7 +11,6 @@
 
 @interface EZPlayerViewController : UIViewController
 @property (nonatomic, strong) AVPlayerViewController * playViewController;
-//@property (nonatomic, assign) BOOL  isCustomContentViewsShow;
 @property (nonatomic, weak) UIView *  customContentView;
 
 
@@ -25,10 +24,4 @@
 
 
 
-
-//weak reference
-//- (void)addCustomContentView:(UIView *)customContentView;
-//- (void)removeCustomContentView:(UIView *)customContentView;
-//- (void)removeAllCustomContentViews;
-//- (NSArray<UIView *> *)allCustomContentViews;
 @end

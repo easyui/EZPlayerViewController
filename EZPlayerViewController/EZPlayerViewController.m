@@ -19,7 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"__%@",self.view);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,7 +76,6 @@
 
 #pragma mark - UIGestureRecognizer methods
 - (void)__updateGestureRecognizer{
-//    if (self.customContentWeakViews.count) {
     if (self.customContentView) {
         if(![self.view.gestureRecognizers containsObject:self.swipeGestureRecognizer]){
             self.swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureRecognized:)];
@@ -92,25 +90,12 @@
 - (void)swipeGestureRecognized:(UISwipeGestureRecognizer *)swipeGesture{
     UIGestureRecognizerState state = swipeGesture.state;
     switch (state) {
-            //        case UIGestureRecognizerStatePossible:
-            //            NSLog(@"UIGestureRecognizerStatePossible");
-            //            break;
-            //        case UIGestureRecognizerStateBegan:
-            //            NSLog(@"UIGestureRecognizerStateBegan");
-            //            break;
-            //        case UIGestureRecognizerStateChanged:
-            //            NSLog(@"UIGestureRecognizerStateChanged");
-            //            break;
+
         case UIGestureRecognizerStateEnded:
             NSLog(@"UIGestureRecognizerStateEnded");
             [self __switchCustomContentViewsShow];
             break;
-            //        case UIGestureRecognizerStateCancelled:
-            //            NSLog(@"UIGestureRecognizerStateCancelled");
-            //            break;
-            //        case UIGestureRecognizerStateFailed:
-            //            NSLog(@"UIGestureRecognizerStateFailed");
-            //            break;
+
         default:
             break;
     }
@@ -134,8 +119,6 @@
     
     
     if (!self.customContentView.hidden) {
-        //        self.customContentView
-        //        context.nextFocusedView
         if([NSStringFromClass([context.nextFocusedView class]) isEqualToString:@"_AVFocusContainerView"]){
             return NO;
         }
@@ -152,40 +135,10 @@
 
 
 #pragma mark - Public methods
-//- (void)addCustomContentView:(UIView *)customContentView{
-//    [self.customContentWeakViews addObject:customContentView];
-//    [self __updateGestureRecognizer];
-//}
-//
-//- (void)removeCustomContentView:(UIView *)customContentView{
-//    [self.customContentWeakViews removeObject:customContentView];
-//    [self __updateGestureRecognizer];
-//}
-//
-//- (void)removeAllCustomContentViews{
-//    [self.customContentWeakViews removeAllObjects];
-//    [self __updateGestureRecognizer];
-//}
-//
-//- (NSArray<UIView *> *)allCustomContentViews{
-//    return [self.customContentWeakViews allObjects];
-//}
+
 
 #pragma mark - Private methods
 - (void)__switchCustomContentViewsShow{
-//    if(self.customContentWeakViews.count){
-//        self.isCustomContentViewsShow = !self.isCustomContentViewsShow;
-//        for (UIView *customContentWeakView in self.customContentWeakViews) {
-//            customContentWeakView.hidden = self.isCustomContentViewsShow;
-//            if (customContentWeakView.hidden) {
-//                [self.view sendSubviewToBack:customContentWeakView];
-//            }else{
-//                [self.view bringSubviewToFront:customContentWeakView];
-//            }
-//            
-//        }
-//        [self setNeedsFocusUpdate];
-//    }
         if(self.customContentView){
             self.customContentView.hidden = !self.customContentView.hidden;
                 if (self.customContentView.hidden) {
@@ -198,15 +151,6 @@
 }
 
 #pragma mark - Get／Set methods
-
-//-(NSHashTable *)customContentWeakViews{
-//    if (!_customContentWeakViews) {
-//        _customContentWeakViews = [NSHashTable weakObjectsHashTable];
-//    }
-//    return _customContentWeakViews;
-//}
-
-
 -(void)setCustomContentView:(UIView *)customContentView{
     _customContentView = customContentView;
      [self __updateGestureRecognizer];

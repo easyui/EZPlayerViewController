@@ -11,6 +11,10 @@
 @interface EZPlayerViewController ()
 //@property (strong, nonatomic)  NSHashTable *customContentWeakViews;
 @property (strong, nonatomic)  UISwipeGestureRecognizer *swipeGestureRecognizer;
+@property (assign, nonatomic)  BOOL isInterceptedMenu;
+
+@property (strong, nonatomic)  UITapGestureRecognizer *tapMenuGestureRecognizer;
+
 @end
 
 @implementation EZPlayerViewController
@@ -19,7 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+//    accepted
+//    You can register a tapGestureRecognizer and set allowedPressTypes = UIPressTypeMenu code like so:
+    
+  
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -50,7 +60,7 @@
 - (void)loadFromUrl:(NSURL *)url{
     self.playViewController = [[AVPlayerViewController alloc] init];
     AVPlayer *avPlayer = [[AVPlayer alloc] initWithURL:url];
-    avPlayer.closedCaptionDisplayEnabled = true;
+    avPlayer.closedCaptionDisplayEnabled = YES;
     //    [avPlayer addObserver:self forKeyPath:@"status" options:0 context:nil];
     self.playViewController.player = avPlayer;
     [self.playViewController.player play];
@@ -80,6 +90,7 @@
         if(![self.view.gestureRecognizers containsObject:self.swipeGestureRecognizer]){
             self.swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureRecognized:)];
             self.swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+            self.swipeGestureRecognizer.delaysTouchesEnded = NO;
             [self.view addGestureRecognizer: self.swipeGestureRecognizer];
         }
     }else{
@@ -93,12 +104,27 @@
 
         case UIGestureRecognizerStateEnded:
             NSLog(@"UIGestureRecognizerStateEnded");
-            [self __switchCustomContentViewsShow];
+            NSLog(@"%@",self.preferredFocusedView);
+            if (self.customContentView && self.customContentView.hidden) {
+                [self __switchCustomContentViewsShow];
+            }
             break;
 
         default:
             break;
     }
+}
+
+- (void)__addTapMenuGestureRecognizer{
+    [self.view removeGestureRecognizer:self.tapMenuGestureRecognizer];
+    self.tapMenuGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMenuGestureRecognized:)];
+    self.tapMenuGestureRecognizer.allowedPressTypes = @[@(UIPressTypeMenu)];
+    [self.view addGestureRecognizer:self.tapMenuGestureRecognizer];
+}
+
+- (void)tapMenuGestureRecognized:(UITapGestureRecognizer *)tapMenuGesture{
+    [self __switchCustomContentViewsShow];
+    [self.view removeGestureRecognizer:self.tapMenuGestureRecognizer];
 }
 
 #pragma mark - Focus methods
@@ -133,6 +159,59 @@
 }
 
 
+//
+//
+//
+//-(void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
+//
+//    self.isInterceptedMenu = NO;;
+//
+//    if ( presses.anyObject.type == UIPressTypeMenu) {
+//        if (self.customContentView && !self.customContentView.hidden ) {
+//            [self __switchCustomContentViewsShow];
+//            self.isInterceptedMenu = YES;
+//            return;
+//        }
+//    
+//    }
+//    
+//    NSLog(@"____pressesBegan");
+//    [super pressesBegan:presses withEvent:event];
+//}
+//
+//-(void)pressesChanged:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
+//
+//    if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
+//        return;
+//    }
+//    NSLog(@"____pressesChanged");
+//
+//    [super pressesChanged:presses withEvent:event];
+//}
+//
+//-(void)pressesEnded:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
+//
+//    if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
+//        return;
+//    }
+//    NSLog(@"____pressesEnded");
+//
+//    [super pressesEnded:presses withEvent:event];
+//}
+//
+//
+//-(void)pressesCancelled:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
+//    if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
+//
+//        return;
+//    }
+//    NSLog(@"____pressesCancelled");
+//
+//    [super pressesCancelled:presses withEvent:event];
+//}
+
+
+
 
 #pragma mark - Public methods
 
@@ -145,6 +224,7 @@
                     [self.view sendSubviewToBack:self.customContentView];
                 }else{
                     [self.view bringSubviewToFront:self.customContentView];
+                    [self __addTapMenuGestureRecognizer];
                 }
             [self setNeedsFocusUpdate];
         }

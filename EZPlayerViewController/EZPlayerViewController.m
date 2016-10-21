@@ -58,16 +58,13 @@
 
 #pragma mark - Player action
 - (void)loadFromUrl:(NSURL *)url{
-    self.playViewController = [[AVPlayerViewController alloc] init];
+    [self __configAVPlayerViewController];
     AVPlayer *avPlayer = [[AVPlayer alloc] initWithURL:url];
     avPlayer.closedCaptionDisplayEnabled = YES;
+//    avPlayer.currentItem;
     //    [avPlayer addObserver:self forKeyPath:@"status" options:0 context:nil];
     self.playViewController.player = avPlayer;
     [self.playViewController.player play];
-    [self addChildViewController:self.playViewController];
-    self.playViewController.view.frame = self.view.bounds;
-    [self.view addSubview:self.playViewController.view];
-    [self.playViewController didMoveToParentViewController:self];
 }
 
 
@@ -90,7 +87,6 @@
         if(![self.view.gestureRecognizers containsObject:self.swipeGestureRecognizer]){
             self.swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureRecognized:)];
             self.swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
-            self.swipeGestureRecognizer.delaysTouchesEnded = NO;
             [self.view addGestureRecognizer: self.swipeGestureRecognizer];
         }
     }else{
@@ -159,8 +155,50 @@
 }
 
 
+#pragma mark - Touch methods
+
+-(void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
+
+    self.isInterceptedMenu = NO;;
+
+    if ( presses.anyObject.type == UIPressTypeMenu) {
+        if (!self.customContentView || self.customContentView.hidden ) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:EZPlayerViewControllerExitFullScreenNotification object:nil];
+            self.isInterceptedMenu = YES;
+            return;
+        }
+    }
+
+    [super pressesBegan:presses withEvent:event];
+}
+
+-(void)pressesChanged:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
+
+    if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
+        return;
+    }
+
+    [super pressesChanged:presses withEvent:event];
+}
+
+-(void)pressesEnded:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
+
+    if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
+        return;
+    }
+
+    [super pressesEnded:presses withEvent:event];
+}
 
 
+-(void)pressesCancelled:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
+    if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
+
+        return;
+    }
+
+    [super pressesCancelled:presses withEvent:event];
+}
 #pragma mark - Public methods
 
 
@@ -176,6 +214,17 @@
                 }
             [self setNeedsFocusUpdate];
         }
+}
+
+- (void)__configAVPlayerViewController{
+    if (!self.playViewController) {
+        self.playViewController = [[AVPlayerViewController alloc] init];
+        [self addChildViewController:self.playViewController];
+        self.playViewController.view.frame = self.view.bounds;
+        [self.view addSubview:self.playViewController.view];
+        [self.playViewController didMoveToParentViewController:self];
+    }
+
 }
 
 #pragma mark - Get／Set methods

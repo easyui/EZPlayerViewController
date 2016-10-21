@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVKit/AVKit.h>
+#define EZPlayerViewControllerExitFullScreenNotification   @"EZPlayerViewControllerExitFullScreenNotification"
 
 @interface EZPlayerViewController : UIViewController
 @property (nonatomic, strong) AVPlayerViewController * playViewController;

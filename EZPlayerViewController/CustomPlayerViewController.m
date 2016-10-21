@@ -44,7 +44,7 @@
 }
 
 -(void)dealloc{
-
+    NSLog(@"CustomPlayerViewController  释放");
 
 }
 

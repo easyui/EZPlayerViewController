@@ -19,6 +19,7 @@
 @property (assign, nonatomic)  BOOL isInterceptedMenu;
 
 
+
 @end
 
 @implementation EZPlayerViewController
@@ -61,7 +62,7 @@
 
 
 #pragma mark - Player action
-- (void)playerWithURL:(NSURL *)url{
+- (void)playWithURL:(NSURL *)url{
     if (!url) {
         return;
     }
@@ -214,16 +215,44 @@
 
 #pragma mark - Private methods
 - (void)__switchCustomContentViewsShow{
+    /*
         if(self.customContentView){
-            self.customContentView.hidden = !self.customContentView.hidden;
-                if (self.customContentView.hidden) {
-                    [self.view sendSubviewToBack:self.customContentView];
-                }else{
-                    [self.view bringSubviewToFront:self.customContentView];
-                    [self __addTapMenuGestureRecognizer];
-                }
+//            self.customContentView.hidden = !self.customContentView.hidden;
+//                if (self.customContentView.hidden) {
+//                    [self.view sendSubviewToBack:self.customContentView];
+//                }else{
+//                    [self.view bringSubviewToFront:self.customContentView];
+//                    [self __addTapMenuGestureRecognizer];
+//                }
+             self.customContentView.hidden = !self.customContentView.hidden;
+            if (!self.customContentView.hidden) {
+                [self.view bringSubviewToFront:self.customContentView];
+                [self __addTapMenuGestureRecognizer];
+             }
+            [self playViewController:self handleCustomContentView:self.customContentView isHidden: completionHandler:^{
+               
+            }];
             [self setNeedsFocusUpdate];
         }
+    
+    
+    [UIView animateWithDuration:3 animations:^{
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+     */
+    self.isCustomContentViewHidden = !self.isCustomContentViewHidden;
+}
+
+- (void)playViewController:(EZPlayerViewController *)playViewController handleCustomContentView:(UIView *)customContentView isHidden:(BOOL)isHidden completionHandler:(void(^)())completionHandler{
+    self.customContentView.hidden = isHidden;
+    if (self.customContentView.hidden) {
+        [self.view sendSubviewToBack:self.customContentView];
+    }else{
+        [self.view bringSubviewToFront:self.customContentView];
+    }
+    completionHandler();
 }
 
 - (void)__configAVPlayerViewController{
@@ -274,5 +303,18 @@
     [self __updatePlayerInfo];
 }
 
+-(void)setIsCustomContentViewHidden:(BOOL)isCustomContentViewHidden{
+    _isCustomContentViewHidden = isCustomContentViewHidden;
+    if(self.customContentView){
+        [self playViewController:self handleCustomContentView:self.customContentView isHidden:isCustomContentViewHidden completionHandler:^{
+            if (!isCustomContentViewHidden) {
+                 [self __addTapMenuGestureRecognizer];
+            }
+            [self setNeedsFocusUpdate];
+            
+        }];
+    }
+    
+}
 
 @end

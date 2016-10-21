@@ -37,7 +37,7 @@
     self.playerViewController = [[CustomPlayerViewController alloc] initWithNibName:@"CustomPlayerViewController" bundle:nil];
     self.playerViewController.playerTitle = @"title";
     self.playerViewController.playerDescription = @"desc";
-    [self.playerViewController playerWithURL:[NSURL URLWithString:@"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"]];
+    [self.playerViewController playWithURL:[NSURL URLWithString:@"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"]];
     [self presentViewController:self.playerViewController animated:YES completion:nil];
     
     

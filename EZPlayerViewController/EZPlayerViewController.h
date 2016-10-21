@@ -18,17 +18,23 @@
 
 
 @property (strong, nonatomic) AVPlayerViewController * playViewController;
-@property (weak, nonatomic) UIView *  customContentView;
 
 
 
 
 
-- (void)playerWithURL:(NSURL *)url;
+
+
+
+
+- (void)playWithURL:(NSURL *)url;
 - (void)play;
 - (void)pause;
 - (void)stop;
 
-
+//custom view
+@property (weak, nonatomic) UIView *  customContentView;
+@property (assign, nonatomic)  BOOL isCustomContentViewHidden;
+- (void)playViewController:(EZPlayerViewController *)playViewController handleCustomContentView:(UIView *)customContentView isHidden:(BOOL)isHidden completionHandler:(void(^)())completionHandler;
 
 @end

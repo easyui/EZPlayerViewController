@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.customContentView = self.customView;
+    self.isCustomContentViewHidden = YES;
     // Do any additional setup after loading the view.
 
    

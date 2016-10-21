@@ -35,7 +35,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EZPlayerViewControllerExitFullScreenNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitFullScreenNotification:) name:EZPlayerViewControllerExitFullScreenNotification object:nil];
     self.playerViewController = [[CustomPlayerViewController alloc] initWithNibName:@"CustomPlayerViewController" bundle:nil];
-    [self.playerViewController loadFromUrl:[NSURL URLWithString:@"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"]];
+    self.playerViewController.playerTitle = @"title";
+    self.playerViewController.playerDescription = @"desc";
+    [self.playerViewController playerWithURL:[NSURL URLWithString:@"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"]];
     [self presentViewController:self.playerViewController animated:YES completion:nil];
     
     

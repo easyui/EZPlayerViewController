@@ -11,14 +11,20 @@
 #define EZPlayerViewControllerExitFullScreenNotification   @"EZPlayerViewControllerExitFullScreenNotification"
 
 @interface EZPlayerViewController : UIViewController
-@property (nonatomic, strong) AVPlayerViewController * playViewController;
-@property (nonatomic, weak) UIView *  customContentView;
+@property (copy, nonatomic) NSString * playerTitle;
+@property (copy, nonatomic) NSString * playerDescription;
+@property (strong, nonatomic) NSURL * url;
+
+
+
+@property (strong, nonatomic) AVPlayerViewController * playViewController;
+@property (weak, nonatomic) UIView *  customContentView;
 
 
 
 
 
-- (void)loadFromUrl:(NSURL *)url;
+- (void)playerWithURL:(NSURL *)url;
 - (void)play;
 - (void)pause;
 - (void)stop;

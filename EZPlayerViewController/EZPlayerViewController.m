@@ -7,13 +7,17 @@
 //
 
 #import "EZPlayerViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface EZPlayerViewController ()
-//@property (strong, nonatomic)  NSHashTable *customContentWeakViews;
+//@property (strong, nonatomic)  AVPlayer *avPlayer;
+
+
 @property (strong, nonatomic)  UISwipeGestureRecognizer *swipeGestureRecognizer;
+@property (strong, nonatomic)  UITapGestureRecognizer *tapMenuGestureRecognizer;
+
 @property (assign, nonatomic)  BOOL isInterceptedMenu;
 
-@property (strong, nonatomic)  UITapGestureRecognizer *tapMenuGestureRecognizer;
 
 @end
 
@@ -57,18 +61,24 @@
 
 
 #pragma mark - Player action
-- (void)loadFromUrl:(NSURL *)url{
-    [self __configAVPlayerViewController];
-    AVPlayer *avPlayer = [[AVPlayer alloc] initWithURL:url];
-    avPlayer.closedCaptionDisplayEnabled = YES;
-//    avPlayer.currentItem;
-    //    [avPlayer addObserver:self forKeyPath:@"status" options:0 context:nil];
-    self.playViewController.player = avPlayer;
-    [self.playViewController.player play];
+- (void)playerWithURL:(NSURL *)url{
+    if (!url) {
+        return;
+    }
+    self.url = url;
+    [self play];
 }
 
 
 - (void)play{
+    if (self.url && !self.playViewController) {
+        [self __configAVPlayerViewController];
+        AVPlayer *avPlayer = [[AVPlayer alloc] initWithURL:self.url];
+        avPlayer.closedCaptionDisplayEnabled = YES;
+        self.playViewController.player = avPlayer;
+        [self __updatePlayerInfo];
+
+    }
     [self.playViewController.player play];
 }
 
@@ -224,14 +234,45 @@
         [self.view addSubview:self.playViewController.view];
         [self.playViewController didMoveToParentViewController:self];
     }
+}
 
+- (void)__updatePlayerInfo{
+    if(self.playViewController.player){
+        NSMutableArray<AVMetadataItem *>* metadataItems = [[NSMutableArray alloc] initWithCapacity:2];
+        if (self.playerTitle) {
+            [metadataItems addObject:[self __createMetadataItemWithIdentifier:AVMetadataCommonIdentifierTitle value:self.playerTitle]];
+        }
+        if (self.playerDescription) {
+            [metadataItems addObject:[self __createMetadataItemWithIdentifier:AVMetadataCommonIdentifierDescription value:self.playerDescription]];
+        }
+        self.playViewController.player.currentItem.externalMetadata = metadataItems;
+    }
+
+}
+
+- (AVMetadataItem *)__createMetadataItemWithIdentifier:(NSString *)identifier value:(NSString *)value{
+    AVMutableMetadataItem * metaDataItem =  [[AVMutableMetadataItem alloc] init];
+    metaDataItem.identifier = identifier;
+    metaDataItem.value = value;
+    metaDataItem.locale = NSLocale.autoupdatingCurrentLocale;
+    return metaDataItem;
 }
 
 #pragma mark - Get／Set methods
 -(void)setCustomContentView:(UIView *)customContentView{
     _customContentView = customContentView;
      [self __updateGestureRecognizer];
-
 }
+
+-(void)setPlayerTitle:(NSString *)playerTitle{
+    _playerTitle = playerTitle;
+    [self __updatePlayerInfo];
+}
+
+-(void)setPlayerDescription:(NSString *)playerDescription{
+    _playerDescription = playerDescription;
+    [self __updatePlayerInfo];
+}
+
 
 @end

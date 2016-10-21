@@ -18,6 +18,12 @@
 
 
 @property (strong, nonatomic) AVPlayerViewController * playViewController;
+//custom view
+@property (weak, nonatomic) UIView *  customContentView;
+@property (assign, nonatomic)  BOOL isCustomContentViewHidden;
+//embedded view
+@property (weak, nonatomic) UIView *  embeddedContentView;
+
 
 
 
@@ -32,9 +38,7 @@
 - (void)pause;
 - (void)stop;
 
-//custom view
-@property (weak, nonatomic) UIView *  customContentView;
-@property (assign, nonatomic)  BOOL isCustomContentViewHidden;
+
 - (void)playViewController:(EZPlayerViewController *)playViewController handleCustomContentView:(UIView *)customContentView isHidden:(BOOL)isHidden completionHandler:(void(^)())completionHandler;
 
 @end

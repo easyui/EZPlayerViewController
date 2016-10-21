@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,9 +28,50 @@
                                     <action selector="fullscreenplayButtonAction:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="VEM-11-J4h"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nil-Hw-C3c">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nil-Hw-C3c" secondAttribute="height" multiplier="16:9" id="0eO-d4-TN5"/>
+                                    <constraint firstAttribute="height" constant="400" id="34D-nT-XiQ"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="suN-a2-YeU">
+                                <frame key="frameInset" minY="110" width="405" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="embed screnn play"/>
+                                <connections>
+                                    <action selector="embedscrennplayButtonAction:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Ysr-dF-hxg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCm-hQ-HB7">
+                                <frame key="frameInset" minX="434" minY="110" width="431" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="embed screnn stop"/>
+                                <connections>
+                                    <action selector="embedscrennstopButtonAction:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="hs5-cG-RFx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6XD-Rx-eQd">
+                                <frame key="frameInset" minX="888" minY="110" width="176" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="to full"/>
+                                <connections>
+                                    <action selector="embedToFullScreenButtonAction:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="b97-SR-dq4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="nil-Hw-C3c" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="24F-y7-joh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nil-Hw-C3c" secondAttribute="trailing" constant="30" id="rzf-r2-rAd"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="embeddedView" destination="nil-Hw-C3c" id="7j0-Ax-edG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

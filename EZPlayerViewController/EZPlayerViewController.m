@@ -29,10 +29,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    accepted
-//    You can register a tapGestureRecognizer and set allowedPressTypes = UIPressTypeMenu code like so:
+    //    accepted
+    //    You can register a tapGestureRecognizer and set allowedPressTypes = UIPressTypeMenu code like so:
+    [self __addTapMenuGestureRecognizer];
     
-  
+    
 }
 
 
@@ -78,7 +79,7 @@
         avPlayer.closedCaptionDisplayEnabled = YES;
         self.playViewController.player = avPlayer;
         [self __updatePlayerInfo];
-
+        
     }
     [self.playViewController.player play];
 }
@@ -108,7 +109,7 @@
 - (void)swipeGestureRecognized:(UISwipeGestureRecognizer *)swipeGesture{
     UIGestureRecognizerState state = swipeGesture.state;
     switch (state) {
-
+            
         case UIGestureRecognizerStateEnded:
             NSLog(@"UIGestureRecognizerStateEnded");
             NSLog(@"%@",self.preferredFocusedView);
@@ -116,7 +117,7 @@
                 [self __switchCustomContentViewsShow];
             }
             break;
-
+            
         default:
             break;
     }
@@ -130,8 +131,15 @@
 }
 
 - (void)tapMenuGestureRecognized:(UITapGestureRecognizer *)tapMenuGesture{
-    [self __switchCustomContentViewsShow];
-    [self.view removeGestureRecognizer:self.tapMenuGestureRecognizer];
+    if(!self.isCustomContentViewHidden){
+        [self __switchCustomContentViewsShow];
+    }else{
+        [self dismissViewControllerAnimated:YES completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:EZPlayerViewControllerExitFullScreenNotification object:nil];
+            
+        }];
+    }
+    //    [self.view removeGestureRecognizer:self.tapMenuGestureRecognizer];
 }
 
 #pragma mark - Focus methods
@@ -167,84 +175,52 @@
 
 
 #pragma mark - Touch methods
-
--(void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
-
-    self.isInterceptedMenu = NO;;
-
-    if ( presses.anyObject.type == UIPressTypeMenu) {
-        if (!self.customContentView || self.customContentView.hidden ) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:EZPlayerViewControllerExitFullScreenNotification object:nil];
-            self.isInterceptedMenu = YES;
-            return;
-        }
-    }
-
-    [super pressesBegan:presses withEvent:event];
-}
-
--(void)pressesChanged:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
-
-    if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
-        return;
-    }
-
-    [super pressesChanged:presses withEvent:event];
-}
-
--(void)pressesEnded:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
-
-    if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
-        return;
-    }
-
-    [super pressesEnded:presses withEvent:event];
-}
-
-
--(void)pressesCancelled:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
-    if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
-
-        return;
-    }
-
-    [super pressesCancelled:presses withEvent:event];
-}
+/*
+ -(void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
+ 
+ self.isInterceptedMenu = NO;;
+ 
+ if ( presses.anyObject.type == UIPressTypeMenu) {
+ if (!self.customContentView || self.customContentView.hidden ) {
+ [[NSNotificationCenter defaultCenter] postNotificationName:EZPlayerViewControllerExitFullScreenNotification object:nil];
+ self.isInterceptedMenu = YES;
+ return;
+ }
+ }
+ 
+ [super pressesBegan:presses withEvent:event];
+ }
+ 
+ -(void)pressesChanged:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
+ 
+ if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
+ return;
+ }
+ 
+ [super pressesChanged:presses withEvent:event];
+ }
+ 
+ -(void)pressesEnded:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
+ 
+ if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
+ return;
+ }
+ 
+ [super pressesEnded:presses withEvent:event];
+ }
+ 
+ 
+ -(void)pressesCancelled:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event{
+ if ( presses.anyObject.type == UIPressTypeMenu && self.isInterceptedMenu) {
+ 
+ return;
+ }
+ 
+ [super pressesCancelled:presses withEvent:event];
+ }
+ 
+ */
 #pragma mark - Public methods
-
-
-#pragma mark - Private methods
-- (void)__switchCustomContentViewsShow{
-    /*
-        if(self.customContentView){
-//            self.customContentView.hidden = !self.customContentView.hidden;
-//                if (self.customContentView.hidden) {
-//                    [self.view sendSubviewToBack:self.customContentView];
-//                }else{
-//                    [self.view bringSubviewToFront:self.customContentView];
-//                    [self __addTapMenuGestureRecognizer];
-//                }
-             self.customContentView.hidden = !self.customContentView.hidden;
-            if (!self.customContentView.hidden) {
-                [self.view bringSubviewToFront:self.customContentView];
-                [self __addTapMenuGestureRecognizer];
-             }
-            [self playViewController:self handleCustomContentView:self.customContentView isHidden: completionHandler:^{
-               
-            }];
-            [self setNeedsFocusUpdate];
-        }
-    
-    
-    [UIView animateWithDuration:3 animations:^{
-        
-    } completion:^(BOOL finished) {
-        
-    }];
-     */
-    self.isCustomContentViewHidden = !self.isCustomContentViewHidden;
-}
-
 - (void)playViewController:(EZPlayerViewController *)playViewController handleCustomContentView:(UIView *)customContentView isHidden:(BOOL)isHidden completionHandler:(void(^)())completionHandler{
     self.customContentView.hidden = isHidden;
     if (self.customContentView.hidden) {
@@ -254,6 +230,13 @@
     }
     completionHandler();
 }
+
+
+#pragma mark - Private methods
+- (void)__switchCustomContentViewsShow{
+    self.isCustomContentViewHidden = !self.isCustomContentViewHidden;
+}
+
 
 - (void)__configAVPlayerViewController{
     if (!self.playViewController) {
@@ -276,7 +259,7 @@
         }
         self.playViewController.player.currentItem.externalMetadata = metadataItems;
     }
-
+    
 }
 
 - (AVMetadataItem *)__createMetadataItemWithIdentifier:(NSString *)identifier value:(NSString *)value{
@@ -290,7 +273,7 @@
 #pragma mark - Get／Set methods
 -(void)setCustomContentView:(UIView *)customContentView{
     _customContentView = customContentView;
-     [self __updateGestureRecognizer];
+    [self __updateGestureRecognizer];
 }
 
 -(void)setPlayerTitle:(NSString *)playerTitle{
@@ -308,7 +291,7 @@
     if(self.customContentView){
         [self playViewController:self handleCustomContentView:self.customContentView isHidden:isCustomContentViewHidden completionHandler:^{
             if (!isCustomContentViewHidden) {
-                 [self __addTapMenuGestureRecognizer];
+                //                [self __addTapMenuGestureRecognizer];
             }
             [self setNeedsFocusUpdate];
             

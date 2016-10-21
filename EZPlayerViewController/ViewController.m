@@ -9,11 +9,9 @@
 #import "ViewController.h"
 #import "EZPlayerViewController.h"
 #import "CustomPlayerViewController.h"
-#import "PresentedViewController.h"
 
 @interface ViewController ()
 @property(nonatomic,strong) EZPlayerViewController * playerViewController;
-@property(nonatomic,strong) PresentedViewController * sspresentedViewController;
 @property (weak, nonatomic) IBOutlet UIView *embeddedView;
 
 @end
@@ -40,18 +38,7 @@
     self.playerViewController.playerDescription = @"desc";
     [self.playerViewController playWithURL:[NSURL URLWithString:@"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"]];
     [self presentViewController:self.playerViewController animated:YES completion:nil];
-    
-    
-    
-    
-    //    CustomPlayerViewController *playerViewController = [[CustomPlayerViewController alloc] initWithNibName:@"CustomPlayerViewController" bundle:nil];
-    //    [playerViewController loadFromUrl:[NSURL URLWithString:@"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"]];
-    //    [self presentViewController:playerViewController animated:YES completion:nil];
-    
-    //        self.sspresentedViewController = [[PresentedViewController alloc] initWithNibName:@"PresentedViewController" bundle:nil];
-    //        [self presentViewController:self.sspresentedViewController animated:YES completion:nil];
-    
-    
+
 }
 - (IBAction)embedscrennplayButtonAction:(UIButton *)sender {
     [self embedscrennstopButtonAction:nil];
@@ -76,7 +63,6 @@
 - (IBAction)embedToFullScreenButtonAction:(UIButton *)sender {
     if (self.playerViewController) {
         [self.playerViewController.view removeFromSuperview];
-//        [UIApplication sharedApplication].keyWindow.rootViewController.view add
         [self presentViewController:self.playerViewController animated:YES completion:nil];
         
     }
@@ -86,10 +72,8 @@
 
 - (void)exitFullScreenNotification:(NSNotification *)notification{
     if (self.playerViewController.embeddedContentView) {
-
         [self.playerViewController.embeddedContentView addSubview:self.playerViewController.view];
         self.playerViewController.view.frame = self.playerViewController.embeddedContentView.bounds;
-        
     }else{
         [self.playerViewController stop];
         self.playerViewController = nil;

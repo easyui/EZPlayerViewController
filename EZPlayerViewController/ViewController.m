@@ -40,6 +40,7 @@
     [self presentViewController:self.playerViewController animated:YES completion:nil];
 
 }
+
 - (IBAction)embedscrennplayButtonAction:(UIButton *)sender {
     [self embedscrennstopButtonAction:nil];
     

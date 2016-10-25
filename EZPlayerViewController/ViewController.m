@@ -43,7 +43,8 @@
 
 - (IBAction)embedscrennplayButtonAction:(UIButton *)sender {
     [self embedscrennstopButtonAction:nil];
-    
+    [UIApplication sharedApplication].idleTimerDisabled=YES;
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EZPlayerViewControllerExitFullScreenNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitFullScreenNotification:) name:EZPlayerViewControllerExitFullScreenNotification object:nil];
     self.playerViewController = [[CustomPlayerViewController alloc] initWithNibName:@"CustomPlayerViewController" bundle:nil];

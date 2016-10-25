@@ -34,6 +34,13 @@
 - (void)stop;
 - (BOOL)isPlaying;
 
+- (NSTimeInterval)currentTime;
+
+
+
+
+
+
 - (void)playViewController:(EZPlayerViewController *)playViewController handleCustomContentView:(UIView *)customContentView isHidden:(BOOL)isHidden completionHandler:(void(^)())completionHandler;
 
 @end

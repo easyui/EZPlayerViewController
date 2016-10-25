@@ -93,6 +93,10 @@
     return (self.playViewController.player && self.self.playViewController.player.rate != 0.0);
 }
 
+- (NSTimeInterval)currentTime{
+    return CMTimeGetSeconds([self.playViewController.player currentTime]);
+}
+
 #pragma mark - UIGestureRecognizer methods
 - (void)__updateGestureRecognizer{
     if (self.customContentView) {

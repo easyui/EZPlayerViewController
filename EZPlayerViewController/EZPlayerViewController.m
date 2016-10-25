@@ -74,6 +74,16 @@
     [self.playViewController.player pause];
 }
 
+- (void)seekToTime:(float)seconds{
+    [self seekToTime:seconds completionHandler:nil];
+}
+
+- (void)seekToTime:(float)seconds completionHandler:(void (^)(BOOL finished))completionHandler{
+    [self.playViewController.player seekToTime:CMTimeMakeWithSeconds(seconds, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:completionHandler];
+}
+
+
+
 - (void)stop{
     [self.playViewController.player pause];
     self.playViewController.player = nil;

@@ -29,6 +29,8 @@
 - (void)playWithURL:(NSURL *)url;
 - (void)play;
 - (void)pause;
+- (void)seekToTime:(float)seconds;
+- (void)seekToTime:(float)seconds completionHandler:(void (^)(BOOL finished))completionHandler;
 - (void)stop;
 
 

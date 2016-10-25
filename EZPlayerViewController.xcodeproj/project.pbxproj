@@ -15,7 +15,6 @@
 		9903810E1DB623A6000284FA /* EZPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9903810D1DB623A6000284FA /* EZPlayerViewController.m */; };
 		997006E81DB7125400DEF51B /* CustomPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 997006E61DB7125400DEF51B /* CustomPlayerViewController.m */; };
 		997006E91DB7125400DEF51B /* CustomPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997006E71DB7125400DEF51B /* CustomPlayerViewController.xib */; };
-		99F78B311DB9F9A10049D6CC /* EZMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F78B301DB9F9A10049D6CC /* EZMetadataItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +32,6 @@
 		997006E51DB7125400DEF51B /* CustomPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPlayerViewController.h; sourceTree = "<group>"; };
 		997006E61DB7125400DEF51B /* CustomPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPlayerViewController.m; sourceTree = "<group>"; };
 		997006E71DB7125400DEF51B /* CustomPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPlayerViewController.xib; sourceTree = "<group>"; };
-		99F78B2F1DB9F9A10049D6CC /* EZMetadataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZMetadataItem.h; sourceTree = "<group>"; };
-		99F78B301DB9F9A10049D6CC /* EZMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZMetadataItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +93,6 @@
 			children = (
 				9903810C1DB623A6000284FA /* EZPlayerViewController.h */,
 				9903810D1DB623A6000284FA /* EZPlayerViewController.m */,
-				99F78B2F1DB9F9A10049D6CC /* EZMetadataItem.h */,
-				99F78B301DB9F9A10049D6CC /* EZMetadataItem.m */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -178,7 +173,6 @@
 				990380FC1DB6230A000284FA /* AppDelegate.m in Sources */,
 				9903810E1DB623A6000284FA /* EZPlayerViewController.m in Sources */,
 				997006E81DB7125400DEF51B /* CustomPlayerViewController.m in Sources */,
-				99F78B311DB9F9A10049D6CC /* EZMetadataItem.m in Sources */,
 				990380F91DB6230A000284FA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

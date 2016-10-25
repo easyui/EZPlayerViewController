@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isCustomContentViewHidden = YES;
     [self __addTapMenuGestureRecognizer];
     
     
@@ -56,7 +57,6 @@
     self.url = url;
     [self play];
 }
-
 
 - (void)play{
     if (self.url && !self.playViewController) {

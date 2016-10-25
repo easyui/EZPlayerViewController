@@ -32,7 +32,7 @@
 - (void)seekToTime:(float)seconds;
 - (void)seekToTime:(float)seconds completionHandler:(void (^)(BOOL finished))completionHandler;
 - (void)stop;
-
+- (BOOL)isPlaying;
 
 - (void)playViewController:(EZPlayerViewController *)playViewController handleCustomContentView:(UIView *)customContentView isHidden:(BOOL)isHidden completionHandler:(void(^)())completionHandler;
 

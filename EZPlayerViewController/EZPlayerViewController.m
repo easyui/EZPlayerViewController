@@ -89,6 +89,10 @@
     self.playViewController.player = nil;
 }
 
+- (BOOL)isPlaying{
+    return (self.playViewController.player && self.self.playViewController.player.rate != 0.0);
+}
+
 #pragma mark - UIGestureRecognizer methods
 - (void)__updateGestureRecognizer{
     if (self.customContentView) {

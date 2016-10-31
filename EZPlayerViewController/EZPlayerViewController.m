@@ -86,16 +86,6 @@ static const NSString *PlayerItemStatusContext;
 }
 
 - (void)play{
-    /*
-     if (self.url && !self.playViewController) {
-     [self __configAVPlayerViewController];
-     AVPlayer *avPlayer = [[AVPlayer alloc] initWithURL:self.url];
-     avPlayer.closedCaptionDisplayEnabled = YES;
-     self.playViewController.player = avPlayer;
-     [self __updatePlayerInfo];
-     
-     }
-     */
     [self.playViewController.player play];
 }
 

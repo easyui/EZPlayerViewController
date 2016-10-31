@@ -29,6 +29,8 @@ static const NSString *PlayerItemStatusContext;
 
 @property (strong, nonatomic) id itemEndObserver;
 
+@property (strong, nonatomic) NSURL * url;
+
 @end
 
 @implementation EZPlayerViewController
@@ -36,6 +38,7 @@ static const NSString *PlayerItemStatusContext;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil URL:(NSURL *)assetURL{
     if (self = [self initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.url = assetURL;
         self.asset = [AVAsset assetWithURL:assetURL];
         [self __prepareToPlay];
     }
@@ -80,6 +83,7 @@ static const NSString *PlayerItemStatusContext;
     if (!assetURL) {
         return;
     }
+    self.url = assetURL;
     self.asset = [AVAsset assetWithURL:assetURL];
     [self __prepareToPlay];
     [self play];
@@ -368,6 +372,7 @@ static const NSString *PlayerItemStatusContext;
         }];
     }
 }
+
 
 #pragma mark - KVO
 

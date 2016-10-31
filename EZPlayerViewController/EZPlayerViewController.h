@@ -15,7 +15,7 @@
 @interface EZPlayerViewController : UIViewController
 @property (copy, nonatomic) NSString * playerTitle;
 @property (copy, nonatomic) NSString * playerDescription;
-@property (strong, nonatomic) NSURL * url;
+@property (strong, nonatomic, readonly) NSURL * url;
 
 
 

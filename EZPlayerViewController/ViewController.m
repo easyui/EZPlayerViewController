@@ -75,12 +75,10 @@
 }
 
 - (void)exitFullScreenNotification:(NSNotification *)notification{
-    NSLog(@"aaaa");
     if (self.playerViewController.embeddedContentView) {
-        NSLog(@"bbb");
 
-        [self.playerViewController.embeddedContentView addSubview:self.playerViewController.view];
-        self.playerViewController.view.frame = self.playerViewController.embeddedContentView.bounds;
+       // [self.playerViewController.embeddedContentView addSubview:self.playerViewController.view];
+        //self.playerViewController.view.frame = self.playerViewController.embeddedContentView.bounds;
     }else{
         [self.playerViewController stop];
         self.playerViewController = nil;

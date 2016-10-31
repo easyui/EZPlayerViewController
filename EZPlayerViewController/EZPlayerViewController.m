@@ -40,7 +40,7 @@ static const NSString *PlayerItemStatusContext;
         [self __prepareToPlay];
     }
     return self;
-
+    
 }
 
 
@@ -87,14 +87,14 @@ static const NSString *PlayerItemStatusContext;
 
 - (void)play{
     /*
-    if (self.url && !self.playViewController) {
-        [self __configAVPlayerViewController];
-        AVPlayer *avPlayer = [[AVPlayer alloc] initWithURL:self.url];
-        avPlayer.closedCaptionDisplayEnabled = YES;
-        self.playViewController.player = avPlayer;
-        [self __updatePlayerInfo];
-        
-    }
+     if (self.url && !self.playViewController) {
+     [self __configAVPlayerViewController];
+     AVPlayer *avPlayer = [[AVPlayer alloc] initWithURL:self.url];
+     avPlayer.closedCaptionDisplayEnabled = YES;
+     self.playViewController.player = avPlayer;
+     [self __updatePlayerInfo];
+     
+     }
      */
     [self.playViewController.player play];
 }
@@ -167,19 +167,29 @@ static const NSString *PlayerItemStatusContext;
     if(!self.isCustomContentViewHidden){
         [self __switchCustomContentViewsShow];
     }else{
-        [self dismissViewControllerAnimated:NO completion:^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:EZPlayerViewControllerExitFullScreenNotification object:nil];
+        double delayInSeconds = 0.1;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self dismissViewControllerAnimated:NO completion:^{
+                if (self.embeddedContentView) {
+                    NSLog(@"bbb");
+                    [self.embeddedContentView addSubview:self.view];
+                    self.view.frame = self.embeddedContentView.bounds;
+                }
+                [[NSNotificationCenter defaultCenter] postNotificationName:EZPlayerViewControllerExitFullScreenNotification object:nil];
+                
+            }];
             
-        }];
+            
+        });
     }
-    //    [self.view removeGestureRecognizer:self.tapMenuGestureRecognizer];
 }
+
 
 #pragma mark - Focus methods
 
 
 -(UIView *)preferredFocusedView{
-    NSLog(@"%s %s",__FILE__,__FUNCTION__);
     if (!self.customContentView.hidden) {
         return self.customContentView;
     }
@@ -187,11 +197,6 @@ static const NSString *PlayerItemStatusContext;
 }
 
 - (BOOL)shouldUpdateFocusInContext:(UIFocusUpdateContext *)context{
-    NSLog(@"%s %s",__FILE__,__FUNCTION__);
-    NSLog(@"nextFocusedView %@",context.nextFocusedView);
-    NSLog(@"previouslyFocusedView %@",context.previouslyFocusedView);
-    
-    
     if (!self.customContentView.hidden) {
         if([NSStringFromClass([context.nextFocusedView class]) isEqualToString:@"_AVFocusContainerView"]){
             return NO;
@@ -324,8 +329,8 @@ static const NSString *PlayerItemStatusContext;
     avPlayer.closedCaptionDisplayEnabled = YES;
     self.playViewController.player = avPlayer;
     [self __updatePlayerInfo];
-
-
+    
+    
 }
 
 - (void)__addItemEndObserverForPlayerItem {
@@ -334,16 +339,11 @@ static const NSString *PlayerItemStatusContext;
     
     NSOperationQueue *queue = [NSOperationQueue mainQueue];
     
-   // __weak EZPlayerViewController *weakSelf = self;
+    // __weak EZPlayerViewController *weakSelf = self;
     void (^callback)(NSNotification *note) = ^(NSNotification *notification) {
         
         [[NSNotificationCenter defaultCenter] postNotificationName:EZPlayerViewControllerDidPlayToEndTimeNotification object:nil];
-/*
-        [weakSelf.playViewController.player seekToTime:kCMTimeZero
-                  completionHandler:^(BOOL finished) {
-                      [[NSNotificationCenter defaultCenter] postNotificationName:EZPlayerViewControllerDidPlayToEndTimeNotification object:nil];
-                  }];
- */
+        
     };
     
     self.itemEndObserver =
@@ -370,19 +370,13 @@ static const NSString *PlayerItemStatusContext;
 }
 
 #pragma mark - Get／Set methods
-
 -(void)setIsCustomContentViewHidden:(BOOL)isCustomContentViewHidden{
     _isCustomContentViewHidden = isCustomContentViewHidden;
     if(self.customContentView){
         [self playViewController:self handleCustomContentView:self.customContentView isHidden:isCustomContentViewHidden completionHandler:^{
-            if (!isCustomContentViewHidden) {
-                //                [self __addTapMenuGestureRecognizer];
-            }
             [self setNeedsFocusUpdate];
-            
         }];
     }
-    
 }
 
 #pragma mark - KVO
@@ -391,35 +385,13 @@ static const NSString *PlayerItemStatusContext;
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
-    
     if (context == &PlayerItemStatusContext) {
-        
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             [self.playerItem removeObserver:self forKeyPath:STATUS_KEYPATH];
-            
             if (self.playerItem.status == AVPlayerItemStatusReadyToPlay) {
-                
-                // Set up time observers.
-              //  [self addPlayerItemTimeObserver];
                 [self __addItemEndObserverForPlayerItem];
-                
-            //    CMTime duration = self.playerItem.duration;
-                
-                // Synchronize the time display                             // 3
-              //  [self.transport setCurrentTime:CMTimeGetSeconds(kCMTimeZero)
-                                  //    duration:CMTimeGetSeconds(duration)];
-                
- 
-                
-                //[self.player play];
-                
-                //[self loadMediaOptions];
-                //[self generateThumbnails];
-                
             } else {
-             //   [UIAlertView showAlertWithTitle:@"Error"
-                                       // message:@"Failed to load video"];
+                // todo
             }
         });
     }

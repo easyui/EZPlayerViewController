@@ -9,8 +9,16 @@
 #import "EZPlayerViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
+
+// AVPlayerItem's status property
+#define STATUS_KEYPATH @"status"
+// Define this constant for the key-value observation context.
+static const NSString *PlayerItemStatusContext;
+
 @interface EZPlayerViewController ()
 //@property (strong, nonatomic)  AVPlayer *avPlayer;
+@property (strong, nonatomic) AVAsset *asset;
+@property (strong, nonatomic) AVPlayerItem *playerItem;
 
 
 @property (strong, nonatomic)  UISwipeGestureRecognizer *swipeGestureRecognizer;
@@ -19,11 +27,23 @@
 @property (assign, nonatomic)  BOOL isInterceptedMenu;
 
 
+@property (strong, nonatomic) id itemEndObserver;
 
 @end
 
 @implementation EZPlayerViewController
 #pragma mark - ViewControllevr Life
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil URL:(NSURL *)assetURL{
+    if (self = [self initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.asset = [AVAsset assetWithURL:assetURL];
+        [self __prepareToPlay];
+    }
+    return self;
+
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,21 +64,29 @@
     if ([self isViewLoaded]) {
         [self.view.layer removeAllAnimations];
     }
-    NSLog(@"%s 释放",__FILE__ );
-    
+    NSLog(@"%s ",__FILE__ );
+    if (self.itemEndObserver) {                                             // 5
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc removeObserver:self.itemEndObserver
+                      name:AVPlayerItemDidPlayToEndTimeNotification
+                    object:self.playerItem];
+        self.itemEndObserver = nil;
+    }
 }
 
 
 #pragma mark - Player action
-- (void)playWithURL:(NSURL *)url{
-    if (!url) {
+- (void)playWithURL:(NSURL *)assetURL{
+    if (!assetURL) {
         return;
     }
-    self.url = url;
+    self.asset = [AVAsset assetWithURL:assetURL];
+    [self __prepareToPlay];
     [self play];
 }
 
 - (void)play{
+    /*
     if (self.url && !self.playViewController) {
         [self __configAVPlayerViewController];
         AVPlayer *avPlayer = [[AVPlayer alloc] initWithURL:self.url];
@@ -67,6 +95,7 @@
         [self __updatePlayerInfo];
         
     }
+     */
     [self.playViewController.player play];
 }
 
@@ -138,7 +167,7 @@
     if(!self.isCustomContentViewHidden){
         [self __switchCustomContentViewsShow];
     }else{
-        [self dismissViewControllerAnimated:YES completion:^{
+        [self dismissViewControllerAnimated:NO completion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:EZPlayerViewControllerExitFullScreenNotification object:nil];
             
         }];
@@ -274,6 +303,56 @@
     return metaDataItem;
 }
 
+
+- (void)__prepareToPlay {
+    NSArray *keys = @[
+                      @"tracks",
+                      @"duration",
+                      @"commonMetadata",
+                      @"availableMediaCharacteristicsWithMediaSelectionOptions"
+                      ];
+    self.playerItem = [AVPlayerItem playerItemWithAsset:self.asset
+                           automaticallyLoadedAssetKeys:keys];
+    
+    [self.playerItem addObserver:self
+                      forKeyPath:STATUS_KEYPATH
+                         options:0
+                         context:&PlayerItemStatusContext];
+    
+    AVPlayer *avPlayer = [AVPlayer playerWithPlayerItem:self.playerItem];
+    [self __configAVPlayerViewController];
+    avPlayer.closedCaptionDisplayEnabled = YES;
+    self.playViewController.player = avPlayer;
+    [self __updatePlayerInfo];
+
+
+}
+
+- (void)__addItemEndObserverForPlayerItem {
+    
+    NSString *name = AVPlayerItemDidPlayToEndTimeNotification;
+    
+    NSOperationQueue *queue = [NSOperationQueue mainQueue];
+    
+   // __weak EZPlayerViewController *weakSelf = self;
+    void (^callback)(NSNotification *note) = ^(NSNotification *notification) {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:EZPlayerViewControllerDidPlayToEndTimeNotification object:nil];
+/*
+        [weakSelf.playViewController.player seekToTime:kCMTimeZero
+                  completionHandler:^(BOOL finished) {
+                      [[NSNotificationCenter defaultCenter] postNotificationName:EZPlayerViewControllerDidPlayToEndTimeNotification object:nil];
+                  }];
+ */
+    };
+    
+    self.itemEndObserver =
+    [[NSNotificationCenter defaultCenter] addObserverForName:name
+                                                      object:self.playerItem
+                                                       queue:queue
+                                                  usingBlock:callback];
+}
+
 #pragma mark - Get／Set methods
 -(void)setCustomContentView:(UIView *)customContentView{
     _customContentView = customContentView;
@@ -290,6 +369,8 @@
     [self __updatePlayerInfo];
 }
 
+#pragma mark - Get／Set methods
+
 -(void)setIsCustomContentViewHidden:(BOOL)isCustomContentViewHidden{
     _isCustomContentViewHidden = isCustomContentViewHidden;
     if(self.customContentView){
@@ -303,5 +384,47 @@
     }
     
 }
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    
+    if (context == &PlayerItemStatusContext) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.playerItem removeObserver:self forKeyPath:STATUS_KEYPATH];
+            
+            if (self.playerItem.status == AVPlayerItemStatusReadyToPlay) {
+                
+                // Set up time observers.
+              //  [self addPlayerItemTimeObserver];
+                [self __addItemEndObserverForPlayerItem];
+                
+            //    CMTime duration = self.playerItem.duration;
+                
+                // Synchronize the time display                             // 3
+              //  [self.transport setCurrentTime:CMTimeGetSeconds(kCMTimeZero)
+                                  //    duration:CMTimeGetSeconds(duration)];
+                
+ 
+                
+                //[self.player play];
+                
+                //[self loadMediaOptions];
+                //[self generateThumbnails];
+                
+            } else {
+             //   [UIAlertView showAlertWithTitle:@"Error"
+                                       // message:@"Failed to load video"];
+            }
+        });
+    }
+}
+
+
 
 @end

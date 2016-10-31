@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <AVKit/AVKit.h>
 #define EZPlayerViewControllerExitFullScreenNotification   @"EZPlayerViewControllerExitFullScreenNotification"
+#define EZPlayerViewControllerDidPlayToEndTimeNotification   @"EZPlayerViewControllerDidPlayToEndTimeNotification"
+
 
 @interface EZPlayerViewController : UIViewController
 @property (copy, nonatomic) NSString * playerTitle;
@@ -25,8 +27,10 @@
 @property (weak, nonatomic) UIView *  embeddedContentView;
 
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil URL:(NSURL *)assetURL;
 
-- (void)playWithURL:(NSURL *)url;
+
+- (void)playWithURL:(NSURL *)assetURL;
 - (void)play;
 - (void)pause;
 - (void)seekToTime:(float)seconds;
@@ -35,9 +39,6 @@
 - (BOOL)isPlaying;
 
 - (NSTimeInterval)currentTime;
-
-
-
 
 
 

@@ -31,6 +31,8 @@
 }
 
 - (IBAction)fullscreenplayButtonAction:(UIButton *)sender {
+    [self embedscrennstopButtonAction:nil];
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:EZPlayerViewControllerExitFullScreenNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitFullScreenNotification:) name:EZPlayerViewControllerExitFullScreenNotification object:nil];
     self.playerViewController = [[CustomPlayerViewController alloc] initWithNibName:@"CustomPlayerViewController" bundle:nil];
@@ -73,7 +75,10 @@
 }
 
 - (void)exitFullScreenNotification:(NSNotification *)notification{
+    NSLog(@"aaaa");
     if (self.playerViewController.embeddedContentView) {
+        NSLog(@"bbb");
+
         [self.playerViewController.embeddedContentView addSubview:self.playerViewController.view];
         self.playerViewController.view.frame = self.playerViewController.embeddedContentView.bounds;
     }else{

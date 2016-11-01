@@ -102,6 +102,7 @@ static const NSString *PlayerItemStatusContext;
 }
 
 - (void)seekToTime:(float)seconds completionHandler:(void (^)(BOOL finished))completionHandler{
+    [self.playViewController.player.currentItem cancelPendingSeeks];
     [self.playViewController.player seekToTime:CMTimeMakeWithSeconds(seconds, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:completionHandler];
 }
 
@@ -138,8 +139,7 @@ static const NSString *PlayerItemStatusContext;
     switch (state) {
             
         case UIGestureRecognizerStateEnded:
-            NSLog(@"UIGestureRecognizerStateEnded");
-            NSLog(@"%@",self.preferredFocusedView);
+
             if (self.customContentView && self.customContentView.hidden) {
                 [self __switchCustomContentViewsShow];
             }
@@ -166,7 +166,6 @@ static const NSString *PlayerItemStatusContext;
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [self dismissViewControllerAnimated:NO completion:^{
                 if (self.embeddedContentView) {
-                    NSLog(@"bbb");
                     [self.embeddedContentView addSubview:self.view];
                     self.view.frame = self.embeddedContentView.bounds;
                 }
@@ -200,7 +199,6 @@ static const NSString *PlayerItemStatusContext;
 }
 
 - (void)didUpdateFocusInContext:(UIFocusUpdateContext *)context withAnimationCoordinator:(UIFocusAnimationCoordinator *)coordinator{
-    NSLog(@"%s %s",__FILE__,__FUNCTION__);
     
     [super didUpdateFocusInContext:context withAnimationCoordinator:coordinator];
 }

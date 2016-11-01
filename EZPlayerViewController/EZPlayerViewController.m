@@ -68,6 +68,11 @@ static const NSString *PlayerItemStatusContext;
         [self.view.layer removeAllAnimations];
     }
     NSLog(@"%s ",__FILE__ );
+    if (self.playerItem.observationInfo){
+        [self.playerItem removeObserver:self forKeyPath:STATUS_KEYPATH];
+
+    }
+
     if (self.itemEndObserver) {                                             // 5
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
         [nc removeObserver:self.itemEndObserver

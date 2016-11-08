@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,8 +20,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIE-7N-9YU">
+                    <rect key="frame" x="0.0" y="0.0" width="1920" height="450"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G56-ZI-bxS">
+                            <rect key="frame" x="209" y="86" width="211" height="86"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="211" id="Vmu-yr-Fpg"/>
                                 <constraint firstAttribute="height" constant="86" id="pNa-58-R0D"/>
@@ -27,6 +32,7 @@
                             <state key="normal" title="Button1"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTD-qe-wuj">
+                            <rect key="frame" x="640" y="86" width="217" height="86"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="86" id="4cI-uy-YtK"/>
                                 <constraint firstAttribute="width" constant="217" id="U3d-Yy-3zN"/>
@@ -35,6 +41,7 @@
                             <state key="normal" title="Button2"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCQ-GS-4cW">
+                            <rect key="frame" x="1130" y="86" width="218" height="86"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="218" id="2dp-Hk-mqb"/>
                                 <constraint firstAttribute="height" constant="86" id="QUU-zM-pnx"/>
@@ -42,7 +49,8 @@
                             <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                             <state key="normal" title="Button3"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piO-Fo-1qe">
+                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piO-Fo-1qe">
+                            <rect key="frame" x="209" y="278" width="195" height="86"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="86" id="Jh1-Xw-Fri"/>
                                 <constraint firstAttribute="width" constant="195" id="U47-SF-dF0"/>
@@ -50,7 +58,8 @@
                             <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                             <state key="normal" title="Button"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycV-Mb-cY5">
+                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycV-Mb-cY5">
+                            <rect key="frame" x="651" y="278" width="195" height="86"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="86" id="35z-K4-4FN"/>
                                 <constraint firstAttribute="width" constant="195" id="mab-rN-WL8"/>
@@ -58,7 +67,8 @@
                             <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                             <state key="normal" title="Button"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwW-2n-fxu">
+                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwW-2n-fxu">
+                            <rect key="frame" x="1344" y="294" width="195" height="86"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="86" id="YdG-J6-qJW"/>
                                 <constraint firstAttribute="width" constant="195" id="gJx-zf-0Cl"/>

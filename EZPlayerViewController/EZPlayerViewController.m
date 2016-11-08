@@ -21,7 +21,9 @@ static const NSString *PlayerItemStatusContext;
 @property (strong, nonatomic) AVPlayerItem *playerItem;
 
 
-@property (strong, nonatomic)  UISwipeGestureRecognizer *swipeGestureRecognizer;
+@property (strong, nonatomic)  UISwipeGestureRecognizer *openGestureRecognizer;
+//@property (strong, nonatomic)  UISwipeGestureRecognizer *closeGestureRecognizer;
+
 @property (strong, nonatomic)  UITapGestureRecognizer *tapMenuGestureRecognizer;
 
 @property (assign, nonatomic)  BOOL isInterceptedMenu;
@@ -68,9 +70,11 @@ static const NSString *PlayerItemStatusContext;
         [self.view.layer removeAllAnimations];
     }
     NSLog(@"%s ",__FILE__ );
-    if (self.playerItem.observationInfo){
-        [self.playerItem removeObserver:self forKeyPath:STATUS_KEYPATH];
 
+    @try {
+        [self.playerItem removeObserver:self forKeyPath:STATUS_KEYPATH];
+    }
+    @catch (NSException *exception) {
     }
 
     if (self.itemEndObserver) {                                             // 5
@@ -129,24 +133,45 @@ static const NSString *PlayerItemStatusContext;
 #pragma mark - UIGestureRecognizer methods
 - (void)__updateGestureRecognizer{
     if (self.customContentView) {
-        if(![self.view.gestureRecognizers containsObject:self.swipeGestureRecognizer]){
-            self.swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureRecognized:)];
-            self.swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
-            [self.view addGestureRecognizer: self.swipeGestureRecognizer];
+        if(![self.view.gestureRecognizers containsObject:self.openGestureRecognizer]){
+            self.openGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureRecognized:)];
+            self.openGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+            [self.view addGestureRecognizer: self.openGestureRecognizer];
         }
     }else{
-        [self.view removeGestureRecognizer:self.swipeGestureRecognizer];
+        [self.view removeGestureRecognizer:self.openGestureRecognizer];
     }
 }
+
+//- (void)__updateCloseGestureRecognizer{
+//    if (self.customContentView && !self.customContentView.hidden) {
+//        if(![self.view.gestureRecognizers containsObject:self.closeGestureRecognizer]){
+//            self.closeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureRecognized:)];
+//            self.closeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+//            [self.view addGestureRecognizer: self.closeGestureRecognizer];
+//        }
+//    }else{
+//        [self.view removeGestureRecognizer:self.closeGestureRecognizer];
+//    }
+//}
+
+
 
 - (void)swipeGestureRecognized:(UISwipeGestureRecognizer *)swipeGesture{
     UIGestureRecognizerState state = swipeGesture.state;
     switch (state) {
             
         case UIGestureRecognizerStateEnded:
-
-            if (self.customContentView && self.customContentView.hidden) {
-                [self __switchCustomContentViewsShow];
+//            if (swipeGesture.direction == UISwipeGestureRecognizerDirectionDown) {
+//                if (self.customContentView && !self.customContentView.hidden) {
+//                    [self __switchCustomContentViewsShow];
+//                }
+//            }else
+            if (swipeGesture.direction == UISwipeGestureRecognizerDirectionUp) {
+                if (self.customContentView && self.customContentView.hidden) {
+                    [self __switchCustomContentViewsShow];
+                }
+            
             }
             break;
             
@@ -195,16 +220,27 @@ static const NSString *PlayerItemStatusContext;
 }
 
 - (BOOL)shouldUpdateFocusInContext:(UIFocusUpdateContext *)context{
+    CFTimeInterval static _startTime;
+    CFAbsoluteTimeGetCurrent();
     if (!self.customContentView.hidden) {
         if([NSStringFromClass([context.nextFocusedView class]) isEqualToString:@"_AVFocusContainerView"]){
+//            NSLog(@"1-----%@",context.previouslyFocusedView);
+//            NSLog(@"-----%@",context.nextFocusedView);
+            CFTimeInterval  _endTime = CACurrentMediaTime();
+            NSLog(@"%f",_endTime - _startTime);
+            if (_endTime - _startTime > 1) {
+                [self __switchCustomContentViewsShow];
+
+            }
             return NO;
         }
     }
+    _startTime =  CACurrentMediaTime();
+
     return  [super shouldUpdateFocusInContext:context];
 }
 
 - (void)didUpdateFocusInContext:(UIFocusUpdateContext *)context withAnimationCoordinator:(UIFocusAnimationCoordinator *)coordinator{
-    
     [super didUpdateFocusInContext:context withAnimationCoordinator:coordinator];
 }
 
@@ -313,6 +349,12 @@ static const NSString *PlayerItemStatusContext;
                       @"commonMetadata",
                       @"availableMediaCharacteristicsWithMediaSelectionOptions"
                       ];
+    @try {
+        [self.playerItem removeObserver:self forKeyPath:STATUS_KEYPATH];
+    }
+    @catch (NSException *exception) {
+    }
+
     self.playerItem = [AVPlayerItem playerItemWithAsset:self.asset
                            automaticallyLoadedAssetKeys:keys];
     
@@ -371,6 +413,7 @@ static const NSString *PlayerItemStatusContext;
     _isCustomContentViewHidden = isCustomContentViewHidden;
     if(self.customContentView){
         [self playViewController:self handleCustomContentView:self.customContentView isHidden:isCustomContentViewHidden completionHandler:^{
+//            [self __updateCloseGestureRecognizer];
             [self setNeedsFocusUpdate];
         }];
     }
@@ -394,6 +437,7 @@ static const NSString *PlayerItemStatusContext;
         });
     }
 }
+
 
 
 

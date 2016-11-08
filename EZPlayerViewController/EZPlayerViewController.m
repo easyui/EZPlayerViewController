@@ -303,6 +303,28 @@ static const NSString *PlayerItemStatusContext;
 }
 
 
+- (BOOL)hiddenContentView{
+    if (self.isCustomContentViewHidden) {
+        return NO;
+    }
+    self.isCustomContentViewHidden = YES;
+    return YES;
+}
+
+- (BOOL)showContentView{
+    if (!self.isCustomContentViewHidden) {
+        return NO;
+    }
+    self.isCustomContentViewHidden = NO;
+    return YES;
+}
+
+- (void)switchCustomContentViewsShow{
+    [self __switchCustomContentViewsShow];
+}
+
+
+
 #pragma mark - Private methods
 - (void)__switchCustomContentViewsShow{
     self.isCustomContentViewHidden = !self.isCustomContentViewHidden;

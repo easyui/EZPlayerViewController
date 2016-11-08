@@ -44,4 +44,8 @@
 
 - (void)playViewController:(EZPlayerViewController *)playViewController handleCustomContentView:(UIView *)customContentView isHidden:(BOOL)isHidden completionHandler:(void(^)())completionHandler;
 
+
+- (BOOL)hiddenContentView;
+- (BOOL)showContentView;
+- (void)switchCustomContentViewsShow;
 @end
